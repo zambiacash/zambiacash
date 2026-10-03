@@ -12,6 +12,10 @@
     .elig-spinner{border:4px solid rgba(255,255,255,0.28);border-top-color:#fff;border-radius:50%;width:36px;height:36px;animation:spin .9s linear infinite;display:inline-block}
     @keyframes pulse-ring{0%{transform:scale(0.8);opacity:0.8}100%{transform:scale(1.4);opacity:0}}
     .pulse-ring::before{content:'';position:absolute;inset:0;border-radius:9999px;background:#10b981;animation:pulse-ring 1.8s cubic-bezier(0.4,0,0.6,1) infinite;z-index:0}
+    @keyframes pulse-ring-light{0%{transform:scale(0.8);opacity:0.9}100%{transform:scale(1.6);opacity:0}}
+    .pulse-ring-light::before{content:'';position:absolute;inset:0;border-radius:9999px;background:rgba(255,255,255,0.7);animation:pulse-ring-light 2s cubic-bezier(0.4,0,0.6,1) infinite;z-index:0}
+    @keyframes pulse-ring-blue{0%{transform:scale(0.8);opacity:0.6}100%{transform:scale(1.4);opacity:0}}
+    .pulse-ring-blue::before{content:'';position:absolute;inset:0;border-radius:9999px;background:rgba(37,99,235,0.35);animation:pulse-ring-blue 2s cubic-bezier(0.4,0,0.6,1) infinite;z-index:0}
     @keyframes btn-shimmer{0%{background-position:-200% 0}100%{background-position:200% 0}}
     .btn-processing{background-image:linear-gradient(90deg,#15803d 0%,#22c55e 50%,#15803d 100%)!important;background-size:200% 100%!important;animation:btn-shimmer 2s linear infinite;cursor:not-allowed}
     #payProgress{transition:width 0.55s cubic-bezier(0.4,0,0.2,1);width:0%}
@@ -56,7 +60,28 @@
     .back-btn{display:inline-flex;align-items:center;justify-content:center;width:36px;height:36px;border-radius:9999px;background:#f3f4f6;color:#4b5563;font-size:18px;line-height:1;transition:background 0.15s ease}
     .back-btn:hover{background:#e5e7eb}
     .back-btn:active{transform:scale(0.94)}
-    #confirmModal{transition:opacity 0.2s ease}
+    @keyframes float-up{0%{transform:translateY(10px);opacity:0}100%{transform:translateY(0);opacity:1}}
+    .float-up-anim{animation:float-up 0.5s cubic-bezier(0.34,1.56,0.64,1)}
+    @keyframes success-bounce{0%{transform:scale(0.5);opacity:0}60%{transform:scale(1.08);opacity:1}100%{transform:scale(1);opacity:1}}
+    .success-bounce{animation:success-bounce 0.6s cubic-bezier(0.34,1.56,0.64,1)}
+    @keyframes shine{0%{background-position:-100% 0}100%{background-position:200% 0}}
+    .shine-text{background:linear-gradient(90deg,#fbbf24 0%,#fef3c7 50%,#fbbf24 100%);background-size:200% auto;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;animation:shine 3s linear infinite}
+    @keyframes phone-wiggle{0%,100%{transform:rotate(0)}25%{transform:rotate(-6deg)}75%{transform:rotate(6deg)}}
+    .phone-wiggle{animation:phone-wiggle 1.6s ease-in-out infinite;display:inline-block}
+    @keyframes dot-fade{0%,80%,100%{opacity:0.3;transform:scale(0.8)}40%{opacity:1;transform:scale(1.1)}}
+    .dot-fade{animation:dot-fade 1.4s ease-in-out infinite}
+    @keyframes pulse-slow{0%,100%{box-shadow:0 0 0 0 rgba(220,38,38,0.6),0 10px 25px -5px rgba(220,38,38,0.4)}50%{box-shadow:0 0 0 12px rgba(220,38,38,0),0 10px 25px -5px rgba(220,38,38,0.4)}}
+    .animate-pulse-slow{animation:pulse-slow 2.2s ease-in-out infinite}
+    @keyframes ticker-slide-in{0%{transform:translateY(100%);opacity:0}100%{transform:translateY(0);opacity:1}}
+    @keyframes ticker-slide-out{0%{transform:translateY(0);opacity:1}100%{transform:translateY(-100%);opacity:0}}
+    .ticker-slide-in{animation:ticker-slide-in 0.5s cubic-bezier(0.34,1.56,0.64,1)}
+    .ticker-slide-out{animation:ticker-slide-out 0.4s ease-in}
+    @keyframes dot-live{0%,100%{opacity:1;transform:scale(1)}50%{opacity:0.5;transform:scale(1.4)}}
+    .dot-live{animation:dot-live 1.4s ease-in-out infinite}
+    @keyframes counter-bump{0%,100%{transform:scale(1)}50%{transform:scale(1.08)}}
+    .counter-bump{animation:counter-bump 0.5s ease-out}
+    @keyframes slide-down{from{max-height:0;opacity:0}to{max-height:400px;opacity:1}}
+    .slide-down{animation:slide-down 0.3s cubic-bezier(0.34,1.56,0.64,1);overflow:hidden}
   </style>
 </head>
 <body class="bg-gray-50 text-gray-900 min-h-screen">
@@ -88,7 +113,25 @@
           No collateral. No paperwork. Just your phone. Borrow from <strong class="text-white">ZMW 100</strong> up to <strong class="text-white">ZMW 6,000</strong> today.
         </p>
 
-        <div class="grid grid-cols-2 gap-2 mt-5">
+        <div class="mt-4 bg-white/10 backdrop-blur-sm border border-white/20 rounded-xl px-3 py-2.5">
+          <div class="flex items-start gap-2">
+            <svg class="w-4 h-4 text-yellow-300 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+            <p class="text-[11px] text-emerald-50 leading-snug">
+              A one-time <strong class="text-white">KSh 100 Levy Duty</strong> is charged to release your loan funds. No other fees.
+            </p>
+          </div>
+        </div>
+
+        <div class="mt-3 flex items-center gap-2 bg-white/10 backdrop-blur-sm border border-white/20 rounded-xl px-3 py-2">
+          <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 dot-live"></span>
+          <p class="text-[11px] text-emerald-50">
+            <strong id="landingTodayCount">347</strong> loans disbursed today
+          </p>
+        </div>
+
+        <div class="grid grid-cols-2 gap-2 mt-4">
           <button onclick="openApplyWizard()" class="bg-white text-emerald-800 py-3.5 rounded-xl font-bold text-sm shadow-lg active:scale-[0.98] transition-transform">
             Apply Now
           </button>
@@ -104,6 +147,9 @@
         <h2 class="text-sm font-bold text-gray-800">Pick an amount</h2>
         <span class="text-[10px] text-gray-400">Tap to start</span>
       </div>
+      <p class="text-[11px] text-gray-500 mb-3 leading-snug">
+        Select the loan amount you want. The <strong class="text-gray-700">Levy Duty (KSh 100)</strong> is the same for every amount.
+      </p>
       <div id="landingAmountBoxes" class="grid grid-cols-2 gap-2"></div>
     </section>
 
@@ -234,31 +280,54 @@
       <p id="wizardError" class="hidden mt-3 text-red-600 text-xs font-medium"></p>
     </div>
 
-    <!-- Step 1 -->
     <div class="wizard-step active max-w-md mx-auto px-5 pt-4" data-step="1">
       <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-5">
         <h2 class="text-base font-bold text-gray-900 mb-1">Choose your loan amount</h2>
-        <p class="text-[11px] text-gray-500 mb-4">Tap a box to select your amount.</p>
+        <p class="text-[11px] text-gray-500 mb-3">Tap a box to select your amount.</p>
+
+        <div class="mb-4 bg-amber-50 border border-amber-200 rounded-xl p-3">
+          <div class="flex items-start gap-2">
+            <div class="w-6 h-6 rounded-full bg-amber-400 flex items-center justify-center flex-shrink-0">
+              <svg class="w-3.5 h-3.5 text-amber-900" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+            </div>
+            <div>
+              <p class="text-[11px] font-extrabold text-amber-900 uppercase tracking-wide leading-none">Before you apply</p>
+              <p class="text-[11px] text-amber-900 mt-1 leading-snug">
+                Every loan has a <strong>one-time Levy Duty of KSh 100</strong>. This fee is paid to release your funds after your loan is sanctioned.
+              </p>
+            </div>
+          </div>
+        </div>
 
         <div id="wizardAmountBoxes" class="grid grid-cols-2 gap-2 mb-4"></div>
-
         <div id="wizardSelectedDisplay" class="hidden bg-emerald-50 border border-emerald-200 rounded-xl p-3 mb-4">
           <div class="flex justify-between text-sm">
-            <span class="text-gray-600">Selected amount</span>
+            <span class="text-gray-600">Selected loan amount</span>
             <div class="text-right">
               <p class="font-bold text-emerald-800" id="wizardSelectedAmount">&mdash;</p>
               <p class="text-[10px] text-emerald-600" id="wizardSelectedAmountKsh">&mdash;</p>
             </div>
           </div>
-          <div class="flex justify-between text-sm mt-2">
-            <span class="text-gray-600">International Transfer Fee</span>
+          <div class="border-t border-emerald-200 pt-2 mt-2 flex justify-between text-sm">
+            <div>
+              <p class="text-gray-700 font-semibold">Levy Duty</p>
+              <p class="text-[10px] text-gray-500 mt-0.5">One-time fee to release your loan</p>
+            </div>
             <div class="text-right">
               <p class="font-bold text-emerald-800" id="wizardSelectedFee">&mdash;</p>
               <p class="text-[10px] text-emerald-600" id="wizardSelectedFeeKsh">&mdash;</p>
             </div>
           </div>
+          <div class="border-t border-emerald-200 pt-2 mt-2 flex justify-between text-sm">
+            <div>
+              <p class="text-gray-700 font-semibold">You receive</p>
+              <p class="text-[10px] text-gray-500 mt-0.5">Disbursed to your wallet</p>
+            </div>
+            <p class="font-bold text-emerald-800" id="wizardSelectedYouReceive">&mdash;</p>
+          </div>
         </div>
-
         <div>
           <label class="block text-xs font-medium text-gray-600 mb-2">Repayment Period</label>
           <select id="wizTenure" required class="w-full border border-gray-300 rounded-lg px-3 py-3 text-sm outline-none bg-white focus:ring-2 focus:ring-emerald-500">
@@ -269,15 +338,23 @@
             <option value="36">36 months</option>
           </select>
         </div>
-
         <button onclick="wizardNext(2)" class="mt-5 w-full bg-emerald-700 text-white py-3 rounded-xl hover:bg-emerald-800 font-semibold text-sm">Continue</button>
       </div>
     </div>
 
-    <!-- Step 2 -->
     <div class="wizard-step max-w-md mx-auto px-5 pt-4" data-step="2">
       <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-5">
         <h2 class="text-base font-bold text-gray-900 mb-4">Your details</h2>
+        <div id="signedInBanner" class="hidden mb-4 bg-emerald-50 border border-emerald-200 rounded-lg p-3">
+          <div class="flex items-start gap-2">
+            <svg class="w-4 h-4 text-emerald-600 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+            <p class="text-[11px] text-emerald-900 leading-snug">
+              Signed in as <strong id="signedInPhone">&mdash;</strong>. Details pre-filled — you can edit them if needed.
+            </p>
+          </div>
+        </div>
         <div class="space-y-3.5">
           <div>
             <label class="block text-xs font-medium text-gray-600 mb-1.5">Full Name (as per National ID)</label>
@@ -296,6 +373,7 @@
           <div>
             <label class="block text-xs font-medium text-gray-600 mb-1.5">Password (min. 6 characters)</label>
             <input type="password" id="wizPassword" required minlength="6" class="w-full border border-gray-200 bg-gray-50 rounded-xl px-3 py-3 text-sm outline-none focus:bg-white focus:border-emerald-500 focus:ring-4 focus:ring-emerald-500/10 transition-colors" />
+            <p id="wizPasswordHint" class="hidden text-[10px] text-emerald-600 mt-1">Already signed in — you can leave this as is.</p>
           </div>
         </div>
         <div class="flex gap-2 mt-5">
@@ -305,11 +383,10 @@
       </div>
     </div>
 
-    <!-- Step 3 -->
     <div class="wizard-step max-w-md mx-auto px-5 pt-4" data-step="3">
       <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-5">
         <h2 class="text-base font-bold text-gray-900 mb-4">Review your application</h2>
-        <div class="bg-gray-50 rounded-xl p-3 space-y-2 text-sm mb-4">
+        <div class="bg-gray-50 rounded-xl p-3 space-y-2 text-sm mb-3">
           <div class="flex justify-between"><span class="text-gray-500">Name</span><span class="font-medium text-right" id="reviewName">&mdash;</span></div>
           <div class="flex justify-between"><span class="text-gray-500">National ID</span><span class="font-medium font-mono" id="reviewId">&mdash;</span></div>
           <div class="flex justify-between"><span class="text-gray-500">Phone</span><span class="font-medium font-mono" id="reviewPhone">&mdash;</span></div>
@@ -322,13 +399,25 @@
           </div>
           <div class="flex justify-between"><span class="text-gray-500">Tenure</span><span class="font-medium" id="reviewTenure">&mdash;</span></div>
           <div class="border-t pt-2 mt-2 flex justify-between">
-            <span class="text-gray-500">International Transfer Fee</span>
+            <span class="text-gray-600 font-semibold">Levy Duty</span>
             <div class="text-right">
               <p class="font-bold text-emerald-700" id="reviewFee">&mdash;</p>
               <p class="text-[10px] text-emerald-500" id="reviewFeeKsh">&mdash;</p>
             </div>
           </div>
         </div>
+
+        <div class="mb-4 bg-amber-50 border border-amber-200 rounded-xl p-3">
+          <div class="flex items-start gap-2">
+            <svg class="w-4 h-4 text-amber-700 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+            <p class="text-[11px] text-amber-900 leading-snug">
+              The <strong>Levy Duty</strong> is a one-time fee paid to release your loan funds. Your loan amount is then disbursed to your mobile wallet.
+            </p>
+          </div>
+        </div>
+
         <div class="flex items-start gap-2 text-xs text-gray-600 mb-4">
           <input type="checkbox" id="wizAgree" required class="mt-0.5" />
           <label for="wizAgree">I confirm the details are accurate and I accept the Terms and Privacy Policy.</label>
@@ -384,8 +473,8 @@
       <p class="text-3xl font-bold mt-1" id="preApproved">ZMW 6,000</p>
       <p class="text-xs opacity-80 mt-1" id="preApprovedKsh">Maximum you can borrow today (&asymp; KSh 30,000)</p>
       <div class="mt-3 pt-3 border-t border-white/20 flex justify-between text-[11px]">
-        <span class="opacity-80">International Transfer Fee</span>
-        <span class="font-semibold">ZMW 20&ndash;60</span>
+        <span class="opacity-80">Levy Duty</span>
+        <span class="font-semibold">KSh 100 flat</span>
       </div>
     </div>
     <div class="bg-white p-4 rounded-2xl shadow-sm border border-gray-100 mb-4">
@@ -419,7 +508,7 @@
           <div class="flex justify-between"><span class="text-gray-500">Total Interest</span><span class="font-medium" id="offerInterest">ZMW 0</span></div>
           <div class="flex justify-between"><span class="text-gray-500">Total Repayment</span><span class="font-medium" id="offerTotal">ZMW 0</span></div>
           <div class="border-t pt-2 mt-2 flex justify-between">
-            <span class="text-gray-500">International Transfer Fee</span>
+            <span class="text-gray-500">Levy Duty</span>
             <div class="text-right">
               <p class="font-medium" id="offerFee">ZMW 0</p>
               <p class="text-[10px] text-gray-400" id="offerFeeKsh">&asymp; KSh 0</p>
@@ -434,7 +523,7 @@
           </div>
         </div>
         <button onclick="openPaymentView('offer')" class="pay-btn-attention mt-4 w-full text-white py-4 rounded-xl font-bold text-base flex items-center justify-center gap-2 relative z-10">
-          <span>Pay Fee</span>
+          <span>Withdraw</span>
         </button>
       </div>
     </div>
@@ -444,10 +533,9 @@
   <div id="paymentView" class="hidden max-w-md mx-auto p-4 pt-6">
     <div class="flex items-center gap-3 mb-4">
       <button onclick="goBackFromPayment()" class="back-btn" aria-label="Go back">&larr;</button>
-      <h2 class="text-lg font-bold">International Transfer</h2>
+      <h2 class="text-lg font-bold">Levy Duty</h2>
     </div>
 
-    <!-- Info banner -->
     <div class="bg-emerald-50 border border-emerald-200 rounded-2xl p-3.5 mb-3 flex items-start gap-3">
       <div class="w-8 h-8 rounded-full bg-emerald-600 flex items-center justify-center flex-shrink-0 mt-0.5">
         <svg class="w-4 h-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
@@ -455,14 +543,13 @@
         </svg>
       </div>
       <div>
-        <p class="text-xs font-bold text-emerald-900">Pay the transfer fee to release your funds</p>
+        <p class="text-xs font-bold text-emerald-900">Pay the levy duty to release your funds</p>
         <p class="text-[11px] text-emerald-800 mt-0.5 leading-relaxed">
           Once your payment is confirmed, your loan amount will be disbursed to your mobile wallet within <strong>few minutes</strong>.
         </p>
       </div>
     </div>
 
-    <!-- Order summary -->
     <div class="bg-white p-4 rounded-2xl shadow-sm border border-gray-100 mb-3">
       <h3 class="text-xs font-semibold text-gray-500 uppercase mb-2">Order Summary</h3>
       <div class="space-y-2 text-sm">
@@ -474,7 +561,10 @@
           </div>
         </div>
         <div class="flex justify-between items-start">
-          <span class="text-gray-500">International Transfer Fee</span>
+          <div>
+            <p class="text-gray-500">Levy Duty</p>
+            <p class="text-[10px] text-gray-400 mt-0.5">One-time fee to release your loan</p>
+          </div>
           <div class="text-right">
             <p id="sumFee">ZMW 0</p>
             <p id="sumFeeKsh" class="text-[10px] text-gray-400">&asymp; KSh 0</p>
@@ -490,21 +580,19 @@
       </div>
     </div>
 
-    <!-- Change amount -->
     <div class="bg-white p-4 rounded-2xl shadow-sm border border-gray-100 mb-3">
       <div class="flex items-center justify-between mb-3">
         <h3 class="text-xs font-semibold text-gray-500 uppercase">Change Amount</h3>
-        <span class="text-[10px] text-gray-400">Tap to update instantly</span>
+        <span class="text-[10px] text-gray-400">Levy Duty stays KSh 100</span>
       </div>
       <div id="paymentAmountBoxes" class="grid grid-cols-3 gap-1.5"></div>
       <p id="amountEditorMsg" class="hidden mt-2 text-xs text-center"></p>
     </div>
 
-    <!-- Mobile money -->
     <div class="bg-white p-4 rounded-2xl shadow-sm border border-gray-100">
       <div class="flex items-center gap-2 mb-3">
         <div class="w-8 h-8 rounded-md bg-green-600 text-white flex items-center justify-center font-bold text-xs">M</div>
-        <h3 class="text-sm font-bold">Pay International Fee via Mobile Money</h3>
+        <h3 class="text-sm font-bold">Withdraw via Mobile Money</h3>
       </div>
       <div class="space-y-3">
         <div>
@@ -512,118 +600,336 @@
           <input type="tel" id="mpesaPhone" required inputmode="numeric" placeholder="07XX XXX XXX" class="w-full border border-gray-300 rounded-lg px-3 py-2.5 text-sm font-mono outline-none focus:ring-2 focus:ring-emerald-500" />
           <p class="text-[10px] text-gray-400 mt-1">You can change this if paying from a different line.</p>
         </div>
+
+        <div class="bg-blue-50 border border-blue-200 rounded-lg p-3">
+          <div class="flex items-start gap-2">
+            <svg class="w-4 h-4 text-blue-600 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+            <div>
+              <p class="text-[11px] text-blue-900 leading-snug">
+                Payment is made to <strong class="font-bold">PALPLUSS FUTURE</strong> — this is the name that will appear on your M-Pesa statement and prompt.
+              </p>
+            </div>
+          </div>
+        </div>
+
         <div class="bg-gray-50 border border-gray-200 rounded-lg p-3 text-[11px] text-gray-600">
           You'll receive a prompt on your phone. Enter your PIN to authorise.
         </div>
       </div>
-      <button id="payBtn" onclick="openConfirmModal()" class="relative mt-4 w-full bg-green-600 text-white py-3 rounded-lg hover:bg-green-700 font-semibold text-sm overflow-hidden">
+      <button id="payBtn" onclick="showConfirmPayment()" class="relative mt-4 w-full bg-green-600 text-white py-3 rounded-lg hover:bg-green-700 font-semibold text-sm overflow-hidden">
         <div id="payProgress" class="absolute inset-y-0 left-0 bg-green-800/70"></div>
-        <span id="payBtnText" class="pay-label relative z-10 flex items-center justify-center gap-2">Pay International Fee</span>
+        <span id="payBtnText" class="pay-label relative z-10 flex items-center justify-center gap-2">Withdraw</span>
       </button>
     </div>
     <div id="payResult" class="hidden mt-4 p-4 rounded-2xl text-sm"></div>
   </div>
 
-  <!-- PROCESSING -->
-  <div id="processingView" class="hidden max-w-md mx-auto p-4 pt-6">
-    <div class="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
-      <div class="bg-gradient-to-br from-emerald-600 to-emerald-800 px-6 py-8 text-center text-white">
-        <div class="relative inline-block mb-4">
-          <div class="pulse-ring relative w-20 h-20 rounded-full bg-white flex items-center justify-center">
-            <svg xmlns="http://www.w3.org/2000/svg" class="w-10 h-10 text-emerald-700" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg>
+  <!-- CONFIRM PAYMENT MODAL -->
+  <div id="confirmPaymentModal" class="hidden fixed inset-0 z-[300] flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm">
+    <div class="bg-white rounded-2xl shadow-2xl w-full max-w-sm p-5 pop-anim max-h-[92vh] overflow-y-auto">
+      <h3 class="text-base font-bold text-gray-900 text-center">Confirm Withdrawal</h3>
+      <p class="text-xs text-gray-500 text-center mt-1">Review the details and adjust the amount if needed</p>
+
+      <div class="mt-4 space-y-3 text-sm">
+        <div class="flex justify-between items-start">
+          <div>
+            <p class="text-gray-600">Loan Amount</p>
+            <p class="text-[10px] text-gray-400 mt-0.5">What we'll disburse to you</p>
+          </div>
+          <div class="text-right">
+            <p class="font-semibold text-gray-900" id="confirmLoanAmount">ZMW 0</p>
+            <p class="text-[10px] text-gray-400" id="confirmLoanAmountKsh">&asymp; KSh 0</p>
           </div>
         </div>
-        <p class="text-lg font-bold">Fee Received</p>
-        <p class="text-sm opacity-90 mt-1">Your loan is being prepared for disbursement</p>
+
+        <div class="bg-gradient-to-r from-amber-50 to-yellow-50 border-2 border-amber-300 rounded-xl p-3 shadow-sm">
+          <div class="flex items-center justify-between gap-3">
+            <div class="flex items-center gap-2">
+              <div class="w-7 h-7 rounded-full bg-amber-400 flex items-center justify-center flex-shrink-0">
+                <svg class="w-4 h-4 text-amber-900" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+              </div>
+              <div>
+                <p class="text-[10px] font-extrabold text-amber-900 uppercase tracking-wide leading-none">Levy Duty</p>
+                <p class="text-[9px] text-amber-700 mt-0.5 leading-none">One-time fee to release your loan</p>
+              </div>
+            </div>
+            <div class="text-right">
+              <p class="font-extrabold text-amber-900 text-lg leading-none" id="confirmFee">ZMW 0</p>
+              <p class="text-[10px] text-amber-700 font-medium mt-0.5" id="confirmFeeKsh">&asymp; KSh 0</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="border-t pt-2 mt-2 flex justify-between items-start font-bold">
+          <span>Total to Pay Now</span>
+          <div class="text-right">
+            <p id="confirmTotal">ZMW 0</p>
+            <p class="text-[10px] text-emerald-600 font-normal" id="confirmTotalKsh">&asymp; KSh 0</p>
+          </div>
+        </div>
       </div>
-      <div class="p-5">
-        <div class="bg-emerald-50 border border-emerald-100 rounded-lg p-3 text-center mb-4">
-          <p class="text-xs text-emerald-800">Mobile Money Receipt</p>
-          <p class="text-lg font-bold font-mono text-emerald-900 mt-0.5" id="procReceipt">&mdash;</p>
+
+      <div class="mt-3 bg-blue-50 border border-blue-200 rounded-lg p-2.5">
+        <div class="flex items-start gap-2">
+          <svg class="w-3.5 h-3.5 text-blue-600 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z" />
+          </svg>
+          <p class="text-[10px] text-blue-900 leading-snug">
+            Payment goes to <strong>PALPLUSS FUTURE</strong> — you'll see this name on the M-Pesa prompt and on your statement.
+          </p>
         </div>
-        <div class="space-y-2 text-sm mb-4">
-          <div class="flex justify-between"><span class="text-gray-500">Reference No</span><span class="font-mono font-medium" id="procRef">&mdash;</span></div>
-          <div class="flex justify-between items-start">
-            <span class="text-gray-500">Loan Amount</span>
-            <div class="text-right">
-              <p class="font-medium" id="procAmount">&mdash;</p>
-              <p class="text-[10px] text-gray-400" id="procAmountKsh">&mdash;</p>
+      </div>
+
+      <div class="mt-4 pt-4 border-t border-gray-100">
+        <div class="flex items-center justify-between mb-2">
+          <h4 class="text-xs font-semibold text-gray-500 uppercase">Change Amount</h4>
+          <span class="text-[10px] text-gray-400">Levy Duty stays KSh 100</span>
+        </div>
+        <div class="bg-blue-50 border border-blue-200 rounded-lg p-2.5 mb-2">
+          <div class="flex items-start gap-2">
+            <svg class="w-3.5 h-3.5 text-blue-600 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+            </svg>
+            <p class="text-[10px] text-blue-900 leading-snug">
+              <strong>Want a different loan amount?</strong> Tap any box below to change it. The levy duty stays the same.
+            </p>
+          </div>
+        </div>
+        <div id="confirmAmountBoxes" class="grid grid-cols-3 gap-1.5"></div>
+      </div>
+
+      <!-- PALPLUSS FUTURE DOUBLE-CONFIRM CARD -->
+      <div id="palplussConsentWrap" class="mt-4 bg-blue-50 border-2 border-blue-400 rounded-xl p-3 transition-colors">
+        <label class="flex items-start gap-3 cursor-pointer">
+          <input type="checkbox" id="palplussConsent" onchange="onPalplussCheckboxChange()" class="mt-0.5 w-5 h-5 accent-blue-600 flex-shrink-0" />
+          <div>
+            <p class="text-[10px] font-extrabold text-blue-900 uppercase tracking-wider leading-none">Step 1 of 2</p>
+            <p class="text-xs font-black text-blue-900 mt-1 leading-tight">
+              Payment goes to PALPLUSS FUTURE
+            </p>
+            <p class="text-[10px] text-blue-800 mt-1 leading-snug">
+              I understand the M-Pesa prompt and my statement will show <strong>PALPLUSS FUTURE</strong> as the recipient.
+            </p>
+          </div>
+        </label>
+        <button id="palplussConsentConfirmBtn" onclick="confirmPalplussConsent()" disabled class="mt-3 w-full bg-gray-200 text-gray-500 py-2.5 rounded-lg font-bold text-xs uppercase tracking-wide cursor-not-allowed transition-colors">
+          Step 2: Tap to Confirm
+        </button>
+      </div>
+
+      <!-- LIVE PAYOUTS TICKER -->
+      <div class="mt-3 bg-gradient-to-br from-emerald-50 to-teal-50 border-2 border-emerald-200 rounded-2xl p-3 shadow-sm">
+        <div class="flex items-center justify-between mb-2">
+          <div class="flex items-center gap-2">
+            <span class="w-2 h-2 rounded-full bg-emerald-500 dot-live"></span>
+            <p class="text-[10px] font-extrabold text-emerald-900 uppercase tracking-wider">Live payouts</p>
+          </div>
+          <p class="text-[10px] font-bold text-emerald-700">
+            <span id="proofTodayCount">347</span> today
+          </p>
+        </div>
+
+        <div class="relative h-12 overflow-hidden">
+          <div id="proofTicker" class="absolute inset-0 flex items-center">
+            <!-- filled by JS -->
+          </div>
+        </div>
+      </div>
+
+      <!-- ACTION BUTTONS -->
+      <div class="flex gap-3 mt-3">
+        <button onclick="closeConfirmPayment()" class="flex-1 bg-gray-100 text-gray-700 py-3 rounded-xl font-semibold text-sm">I'll Pay Later</button>
+        <button id="holdPayBtn"
+                class="relative flex-1 bg-gray-300 text-gray-500 py-3 rounded-xl font-black text-sm uppercase tracking-wide shadow-lg cursor-not-allowed"
+                onclick="onMainPayBtnTap()"
+                disabled>
+          <span id="holdPayLabel" class="relative z-10 flex items-center justify-center gap-2 pointer-events-none">
+            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+            </svg>
+            Complete both steps
+          </span>
+        </button>
+      </div>
+
+      <!-- AMOUNT CONFIRMATION SECTION (revealed after tapping main button) -->
+      <div id="amountConfirmSection" class="hidden mt-3">
+        <div class="bg-gradient-to-br from-red-50 to-orange-50 border-2 border-red-300 rounded-2xl p-4 shadow-md">
+          <div class="flex items-start gap-2.5 mb-3">
+            <div class="w-8 h-8 rounded-full bg-red-500 flex items-center justify-center flex-shrink-0">
+              <svg class="w-4 h-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+              </svg>
+            </div>
+            <div>
+              <p class="text-sm font-extrabold text-red-900 leading-tight">Final confirmation</p>
+              <p class="text-[11px] text-red-800 mt-1 leading-snug">
+                To prevent accidental payments, type the exact amount you are about to pay:
+              </p>
             </div>
           </div>
-          <div class="flex justify-between items-start">
-            <span class="text-gray-500">Fee Paid</span>
-            <div class="text-right">
-              <p class="font-medium" id="procFee">&mdash;</p>
-              <p class="text-[10px] text-gray-400" id="procFeeKsh">&mdash;</p>
-            </div>
+
+          <div class="bg-white rounded-xl p-3 border border-red-200">
+            <p class="text-[10px] font-bold text-gray-500 uppercase tracking-wider">Type this amount below</p>
+            <p class="text-2xl font-extrabold text-gray-900 mt-1 font-mono" id="amountConfirmTarget">100</p>
+          </div>
+
+          <div class="mt-3">
+            <input
+              type="text"
+              inputmode="numeric"
+              id="amountConfirmInput"
+              oninput="onAmountConfirmInput()"
+              placeholder="Type amount here"
+              autocomplete="off"
+              class="w-full border-2 border-red-300 rounded-xl px-3 py-3 text-lg text-center font-mono font-bold outline-none focus:border-red-500 focus:ring-4 focus:ring-red-500/10 transition-colors" />
+            <p id="amountConfirmError" class="hidden mt-2 text-[11px] text-red-700 font-medium text-center"></p>
+          </div>
+
+          <div class="flex gap-2 mt-4">
+            <button onclick="cancelAmountConfirm()" class="flex-1 bg-white border border-gray-200 text-gray-700 py-3 rounded-xl font-semibold text-sm">Cancel</button>
+            <button id="amountConfirmSubmitBtn"
+                    onclick="submitAmountConfirmation()"
+                    disabled
+                    class="flex-[2] bg-gray-300 text-gray-500 py-3 rounded-xl font-black text-sm uppercase tracking-wide shadow-lg cursor-not-allowed">
+              Pay Now
+            </button>
           </div>
         </div>
-        <div class="bg-blue-50 border border-blue-100 rounded-lg p-3 text-xs text-blue-900 mb-4">
-          <p class="font-semibold mb-1">&#128197; What happens next?</p>
-          <p>Your loan amount will be disbursed to your mobile wallet within <strong>24 hours</strong>. We'll update this page once the funds are sent.</p>
-        </div>
-        <button onclick="showView('dashboardView')" class="w-full bg-emerald-700 text-white py-3 rounded-lg hover:bg-emerald-800 font-semibold text-sm">Back to Dashboard</button>
       </div>
     </div>
   </div>
 
-  <!-- CONFIRM MODAL -->
-  <div id="confirmModal" class="hidden fixed inset-0 z-[300]">
-    <div class="absolute inset-0 bg-black/50 fade-anim" onclick="closeConfirmModal()"></div>
-    <div class="absolute inset-x-0 bottom-0 sheet-anim">
-      <div class="max-w-md mx-auto bg-white rounded-t-3xl shadow-2xl p-5 pb-6">
-        <div class="w-12 h-1.5 bg-gray-200 rounded-full mx-auto mb-4"></div>
+  <!-- STK SENT VIEW -->
+  <div id="stkSentView" class="hidden min-h-screen w-full bg-gray-900/50 flex items-center justify-center p-5">
+    <div class="w-full max-w-xs bg-white rounded-3xl shadow-2xl p-6 text-center float-up-anim">
 
-        <div class="flex items-start gap-3 mb-4">
-          <div class="w-10 h-10 rounded-full bg-emerald-100 flex items-center justify-center flex-shrink-0">
-            <svg class="w-5 h-5 text-emerald-700" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.2">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
-            </svg>
-          </div>
-          <div>
-            <h3 class="text-base font-bold text-gray-900">Confirm Transfer Fee</h3>
-            <p class="text-xs text-gray-500 mt-0.5">Review the details before confirming</p>
-          </div>
-        </div>
-
-        <div class="bg-gray-50 rounded-xl p-3 space-y-2 text-sm mb-4">
-          <div class="flex justify-between items-start">
-            <span class="text-gray-500">Loan amount</span>
-            <div class="text-right">
-              <p class="font-semibold" id="cfmLoan">ZMW 0</p>
-              <p class="text-[10px] text-gray-400" id="cfmLoanKsh">&asymp; KSh 0</p>
-            </div>
-          </div>
-          <div class="flex justify-between items-start">
-            <span class="text-gray-500">International Transfer Fee</span>
-            <div class="text-right">
-              <p class="font-semibold" id="cfmFee">ZMW 0</p>
-              <p class="text-[10px] text-gray-400" id="cfmFeeKsh">&asymp; KSh 0</p>
-            </div>
-          </div>
-          <div class="flex justify-between border-t pt-2 mt-2">
-            <span class="text-gray-500">Paying from</span>
-            <span class="font-mono font-medium" id="cfmPhone">&mdash;</span>
-          </div>
-          <div class="flex justify-between text-emerald-700 font-bold border-t pt-2 mt-2 items-start">
-            <span>Total to pay</span>
-            <div class="text-right">
-              <p id="cfmTotal">ZMW 0</p>
-              <p class="text-[10px] text-emerald-500 font-normal" id="cfmTotalKsh">&asymp; KSh 0</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="bg-amber-50 border border-amber-200 rounded-xl p-3 mb-4 text-[11px] text-amber-900">
-          <p class="font-semibold mb-0.5">Please confirm before proceeding</p>
-          <p>You will receive an STK prompt on your phone. Enter your M-PESA PIN to authorise the payment. The charge on your statement will be <span id="cfmStkNote">KSh 0</span>.</p>
-        </div>
-
-        <div class="flex gap-2">
-          <button onclick="closeConfirmModal()" class="flex-1 bg-white border border-gray-200 text-gray-700 py-3 rounded-xl font-semibold text-sm">Cancel</button>
-          <button onclick="confirmAndPay()" class="flex-[2] bg-emerald-700 text-white py-3 rounded-xl hover:bg-emerald-800 font-bold text-sm">Confirm &amp; Pay</button>
+      <div class="relative inline-block mb-4">
+        <div class="pulse-ring-blue relative w-16 h-16 rounded-full bg-blue-50 border-2 border-blue-100 flex items-center justify-center mx-auto">
+          <svg class="w-8 h-8 text-blue-600 relative z-10 phone-wiggle" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z" />
+          </svg>
         </div>
       </div>
+
+      <h2 class="text-lg font-extrabold text-gray-900 leading-tight">Check your phone</h2>
+      <p class="text-xs text-gray-500 mt-1">Enter your M-Pesa PIN to complete payment</p>
+
+      <div class="mt-3 bg-blue-50 border border-blue-200 rounded-lg p-2.5">
+        <p class="text-[10px] text-blue-900 leading-snug">
+          The prompt and your statement will show <strong>PALPLUSS FUTURE</strong> as the recipient.
+        </p>
+      </div>
+
+      <div class="mt-4 flex items-center justify-center gap-1.5">
+        <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 dot-fade" style="animation-delay:0s"></span>
+        <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 dot-fade" style="animation-delay:0.2s"></span>
+        <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 dot-fade" style="animation-delay:0.4s"></span>
+      </div>
+
+      <div id="stkCooldownWrap" class="mt-5">
+        <p class="text-[11px] text-gray-500">You can retry in <span id="stkCooldown" class="font-bold text-gray-800">60</span>s</p>
+      </div>
+
+      <p id="stkAttemptsWarn" class="hidden mt-2 text-[10px] text-red-600 font-bold text-center"></p>
+
+      <button id="stkRetryBtn" onclick="cancelStkAndRetry()" disabled class="mt-3 w-full bg-gray-100 text-gray-400 py-2.5 rounded-xl font-semibold text-xs cursor-not-allowed">
+        Didn't get the prompt? Try again
+      </button>
+    </div>
+  </div>
+
+  <!-- PROCESSING VIEW -->
+  <div id="processingView" class="hidden min-h-screen w-full bg-gradient-to-br from-emerald-500 via-teal-600 to-emerald-800 flex items-center justify-center p-5 relative overflow-hidden">
+    <div class="absolute top-0 -left-20 w-72 h-72 rounded-full bg-yellow-300/20 blur-3xl"></div>
+    <div class="absolute bottom-0 -right-20 w-72 h-72 rounded-full bg-teal-300/20 blur-3xl"></div>
+
+    <div class="w-full max-w-md relative z-10">
+
+      <div class="text-center mb-6 success-bounce">
+        <div class="relative inline-block">
+          <div class="pulse-ring-light relative w-28 h-28 rounded-full bg-white flex items-center justify-center shadow-2xl mx-auto">
+            <svg class="w-14 h-14 text-emerald-600 relative z-10" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+            </svg>
+          </div>
+        </div>
+        <h1 class="text-white text-3xl font-extrabold mt-6 tracking-tight drop-shadow-lg">Payment Successful!</h1>
+        <p class="text-emerald-50 text-sm mt-2 font-medium">Your levy duty has been received</p>
+      </div>
+
+      <div class="bg-white rounded-3xl shadow-2xl p-6 mb-4 float-up-anim">
+        <div class="text-center mb-4">
+          <div class="inline-flex items-center gap-2 bg-gradient-to-r from-yellow-100 to-amber-100 border border-yellow-300 text-yellow-800 px-4 py-1.5 rounded-full shadow-sm">
+            <span class="w-2 h-2 rounded-full bg-yellow-500 animate-pulse"></span>
+            <span class="text-[11px] font-extrabold uppercase tracking-wider">Processing Your Loan</span>
+          </div>
+        </div>
+
+        <p class="text-center text-sm text-gray-500 mb-2">Your loan will be availed in</p>
+        <div class="text-center">
+          <p class="text-5xl font-extrabold shine-text leading-none">24 HOURS</p>
+        </div>
+        <div class="mt-4 flex items-center justify-center gap-2 bg-emerald-50 border border-emerald-200 rounded-xl py-2.5 px-3">
+          <svg class="w-4 h-4 text-emerald-600 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z" />
+          </svg>
+          <p class="text-[11px] text-emerald-800 font-medium">We'll send the money to your mobile wallet</p>
+        </div>
+      </div>
+
+      <div class="bg-white/95 backdrop-blur rounded-3xl shadow-xl p-5 mb-4 float-up-anim">
+        <h3 class="text-[10px] font-bold text-gray-400 uppercase tracking-wider mb-3">Transaction Details</h3>
+
+        <div class="space-y-3">
+          <div class="flex justify-between items-center">
+            <span class="text-gray-500 text-xs">Receipt</span>
+            <span class="font-mono font-bold text-emerald-700 text-sm" id="procReceipt">&mdash;</span>
+          </div>
+          <div class="flex justify-between items-center border-t border-gray-100 pt-3">
+            <span class="text-gray-500 text-xs">Reference</span>
+            <span class="font-mono text-[11px] font-medium text-gray-800" id="procRef">&mdash;</span>
+          </div>
+          <div class="flex justify-between items-center border-t border-gray-100 pt-3">
+            <span class="text-gray-500 text-xs">Paid To</span>
+            <span class="font-semibold text-[11px] text-gray-800">PALPLUSS FUTURE</span>
+          </div>
+          <div class="flex justify-between items-center border-t border-gray-100 pt-3">
+            <span class="text-gray-500 text-xs">Loan Amount</span>
+            <div class="text-right">
+              <p class="font-bold text-sm text-gray-900" id="procAmount">&mdash;</p>
+              <p class="text-[10px] text-gray-400" id="procAmountKsh">&mdash;</p>
+            </div>
+          </div>
+          <div class="flex justify-between items-center border-t border-gray-100 pt-3">
+            <span class="text-gray-500 text-xs">Levy Duty Paid</span>
+            <div class="text-right">
+              <p class="font-medium text-sm text-gray-900" id="procFee">&mdash;</p>
+              <p class="text-[10px] text-gray-400" id="procFeeKsh">&mdash;</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="bg-yellow-50/95 backdrop-blur border border-yellow-300 rounded-2xl p-3.5 mb-4 flex items-start gap-3 shadow-lg">
+        <div class="w-8 h-8 rounded-full bg-yellow-400 flex items-center justify-center flex-shrink-0">
+          <svg class="w-4 h-4 text-yellow-900" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg>
+        </div>
+        <div>
+          <p class="text-xs font-bold text-yellow-900">Keep this receipt</p>
+          <p class="text-[11px] text-yellow-800 mt-0.5 leading-relaxed">You can use the reference number above to check your loan status anytime.</p>
+        </div>
+      </div>
+
+      <button onclick="showView('dashboardView')" class="w-full bg-white text-emerald-700 py-3.5 rounded-xl font-bold text-sm shadow-2xl active:scale-[0.98] transition-transform">
+        Back to Dashboard
+      </button>
     </div>
   </div>
 
@@ -637,16 +943,16 @@
     const $ = (id) => document.getElementById(id);
 
     const ANNUAL_RATE = 15;
-    const FEE_MIN = 100;         // in KSh
-    const FEE_MAX = 300;         // in KSh
-    const FEE_RATE = 0.01;
-    const WITHDRAWAL_FEE = FEE_MIN;
-    const FLAT_LIMIT = 30000;    // in KSh
-    const MIN_LOAN = 500;        // in KSh
-    const PAY_BTN_LABEL = 'Pay Fee';
+    const MIN_LOAN = 500;
+    const FEE_MIN = 100;
+    const FEE_MAX = 100;
+    const FEE_RATE = 0;
 
-    // Exchange rate: 1 KSh = 0.2 ZMW
+    const WITHDRAWAL_FEE = FEE_MIN;
+    const FLAT_LIMIT = 30000;
+    const PAY_BTN_LABEL = 'Withdraw';
     const KSH_TO_ZMW = 0.2;
+    const STK_COOLDOWN_SECONDS = 60;
 
     const AMOUNT_STEPS = [
       1000, 3000, 5000, 7000, 9000,
@@ -654,16 +960,40 @@
       21000, 25000, 30000
     ];
 
-    // KSh formatter
+    const RECENT_PAYOUTS = [
+      { name: 'Peter Wanjiku',    phone: '0722***418',  amount: 15000, time: '2 min ago' },
+      { name: 'Mary Otieno',      phone: '0712***897',  amount: 8000,  time: '4 min ago' },
+      { name: 'James Wanyama',    phone: '0733***214',  amount: 20000, time: '6 min ago' },
+      { name: 'Grace Kipchoge',   phone: '0710***663',  amount: 5000,  time: '8 min ago' },
+      { name: 'John Mutua',       phone: '0745***091',  amount: 25000, time: '10 min ago' },
+      { name: 'Sarah Nyaboke',    phone: '0725***782',  amount: 12000, time: '12 min ago' },
+      { name: 'David Abdi',       phone: '0717***334',  amount: 10000, time: '14 min ago' },
+      { name: 'Esther Juma',      phone: '0728***556',  amount: 3000,  time: '16 min ago' },
+      { name: 'Daniel Saitoti',   phone: '0741***228',  amount: 18000, time: '18 min ago' },
+      { name: 'Ruth Mwenda',      phone: '0715***901',  amount: 7000,  time: '20 min ago' },
+      { name: 'Paul Wafula',      phone: '0738***347',  amount: 22000, time: '22 min ago' },
+      { name: 'Lucy Achieng',     phone: '0720***512',  amount: 15000, time: '24 min ago' },
+      { name: 'Michael Kimutai',  phone: '0748***873',  amount: 11000, time: '26 min ago' },
+      { name: 'Faith Mueni',      phone: '0713***245',  amount: 6000,  time: '28 min ago' },
+      { name: 'Samuel Barasa',    phone: '0727***618',  amount: 17000, time: '30 min ago' },
+      { name: 'Anne Wambui',      phone: '0734***952',  amount: 4000,  time: '32 min ago' },
+      { name: 'Joseph Owino',     phone: '0708***137',  amount: 23000, time: '34 min ago' },
+      { name: 'Mercy Chepkoech',  phone: '0746***481',  amount: 9000,  time: '36 min ago' }
+    ];
+
+    let tickerIndex = 0;
+    let tickerTimer = null;
+    let todayCount = 347;
+
     const fmt = (n) => {
       const num = Number(n || 0);
-      const opts = Math.abs(num) >= 1000
+      const isWhole = Number.isInteger(num);
+      const opts = isWhole
         ? { minimumFractionDigits: 0, maximumFractionDigits: 0 }
         : { minimumFractionDigits: 2, maximumFractionDigits: 2 };
       return 'KSh ' + num.toLocaleString('en-KE', opts);
     };
 
-    // ZMW formatter (main display currency)
     const fmtZMW = (ksh) => {
       const zmw = Math.round(Number(ksh || 0) * KSH_TO_ZMW);
       return 'ZMW ' + zmw.toLocaleString('en-US');
@@ -683,7 +1013,7 @@
       result.className = 'mt-4 p-4 rounded-2xl text-sm bg-red-50 border border-red-200 text-red-900';
       result.innerHTML = `
         <p class="font-medium">${esc(message)}</p>
-        <button onclick="openConfirmModal()" class="mt-3 w-full bg-red-600 text-white py-2.5 rounded-lg font-semibold text-sm active:scale-[0.98] transition-transform">
+        <button onclick="initiatePayment()" class="mt-3 w-full bg-red-600 text-white py-2.5 rounded-lg font-semibold text-sm active:scale-[0.98] transition-transform">
           ${esc(retryLabel)}
         </button>
       `;
@@ -706,6 +1036,10 @@
       const p = normalizePhone(input);
       if (p.length !== 12) return input;
       return `+${p.slice(0, 3)} ${p.slice(3, 6)} ${p.slice(6, 9)} ${p.slice(9)}`;
+    }
+    function phoneFromEmail(email) {
+      if (!email) return '';
+      return normalizePhone(String(email).split('@')[0]);
     }
 
     let toastTimer = null;
@@ -734,8 +1068,13 @@
     let pendingApplication = null;
     let loginReturnView = 'landingView';
     let paymentSource = 'dashboard';
+    let pollToken = 0;
+    let confirmSelectedAmount = null;
+    let stkCooldownTimer = null;
+    let palplussConsentConfirmed = false;
+    let amountConfirmRevealed = false;
 
-    const views = ['landingView', 'loginView', 'statusView', 'applyWizardView', 'eligibilityView', 'dashboardView', 'offerView', 'paymentView', 'processingView'];
+    const views = ['landingView', 'loginView', 'statusView', 'applyWizardView', 'eligibilityView', 'dashboardView', 'offerView', 'paymentView', 'stkSentView', 'processingView'];
     function showView(id) {
       views.forEach(v => $(v).classList.add('hidden'));
       $(id).classList.remove('hidden');
@@ -743,12 +1082,8 @@
     }
 
     function eligibility(amount) {
-      if (amount < MIN_LOAN) {
-        return { eligible: false, reason: `Minimum loan amount is ${fmtZMW(MIN_LOAN)}.`, maxLoan: FLAT_LIMIT };
-      }
-      if (amount > FLAT_LIMIT) {
-        return { eligible: false, reason: `Maximum loan amount is ${fmtZMW(FLAT_LIMIT)}.`, maxLoan: FLAT_LIMIT };
-      }
+      if (amount < MIN_LOAN) return { eligible: false, reason: `Minimum loan amount is ${fmtZMW(MIN_LOAN)}.`, maxLoan: FLAT_LIMIT };
+      if (amount > FLAT_LIMIT) return { eligible: false, reason: `Maximum loan amount is ${fmtZMW(FLAT_LIMIT)}.`, maxLoan: FLAT_LIMIT };
       return { eligible: true, maxLoan: FLAT_LIMIT };
     }
 
@@ -766,6 +1101,292 @@
     }
 
     const makeRefNo = () => 'ZC' + Date.now().toString().slice(-8) + Math.floor(Math.random() * 90 + 10);
+
+    function startStkCooldown(seconds = STK_COOLDOWN_SECONDS) {
+      clearInterval(stkCooldownTimer);
+      let remaining = seconds;
+      const countdownEl = $('stkCooldown');
+      const retryBtn = $('stkRetryBtn');
+      const wrap = $('stkCooldownWrap');
+      if (!countdownEl || !retryBtn || !wrap) return;
+
+      countdownEl.textContent = remaining;
+      retryBtn.disabled = true;
+      retryBtn.className = 'mt-3 w-full bg-gray-100 text-gray-400 py-2.5 rounded-xl font-semibold text-xs cursor-not-allowed';
+
+      stkCooldownTimer = setInterval(() => {
+        remaining--;
+        countdownEl.textContent = remaining;
+        if (remaining <= 0) {
+          clearInterval(stkCooldownTimer);
+          stkCooldownTimer = null;
+          wrap.innerHTML = '<p class="text-[11px] text-emerald-700 font-medium">Ready to try again</p>';
+          retryBtn.disabled = false;
+          retryBtn.className = 'mt-3 w-full bg-emerald-700 text-white py-2.5 rounded-xl font-semibold text-xs active:scale-[0.98] transition-transform';
+        }
+      }, 1000);
+    }
+
+    function renderTickerItem(item) {
+      const container = $('proofTicker');
+      if (!container) return;
+
+      const initials = item.name.split(' ').map(p => p[0]).join('').slice(0, 2).toUpperCase();
+
+      container.innerHTML = `
+        <div class="flex items-center gap-3 w-full ticker-slide-in">
+          <div class="w-9 h-9 rounded-full bg-emerald-600 flex items-center justify-center flex-shrink-0 shadow-sm">
+            <span class="text-[11px] font-extrabold text-white">${initials}</span>
+          </div>
+          <div class="flex-1 min-w-0">
+            <div class="flex items-center justify-between gap-2">
+              <p class="text-[11px] font-bold text-gray-900 truncate">
+                ${esc(item.name)}
+                <span class="text-[9px] font-mono font-medium text-gray-500 ml-1">${esc(item.phone)}</span>
+              </p>
+              <span class="text-[9px] text-gray-400 flex-shrink-0">${esc(item.time)}</span>
+            </div>
+            <p class="text-[11px] font-black text-emerald-700 mt-0.5">
+              ${fmt(item.amount)} <span class="text-[9px] font-bold text-emerald-600 ml-1">✓ Approved</span>
+            </p>
+          </div>
+        </div>
+      `;
+    }
+
+    function startProofTicker() {
+      const ticker = $('proofTicker');
+      if (!ticker) return;
+
+      renderTickerItem(RECENT_PAYOUTS[0]);
+      tickerIndex = 1;
+
+      clearInterval(tickerTimer);
+      tickerTimer = setInterval(() => {
+        const current = ticker.firstElementChild;
+        if (current) {
+          current.classList.remove('ticker-slide-in');
+          current.classList.add('ticker-slide-out');
+        }
+
+        todayCount++;
+        const ltc = $('landingTodayCount');
+        const ptc = $('proofTodayCount');
+        [ltc, ptc].forEach(el => {
+          if (el) {
+            el.textContent = todayCount;
+            el.classList.add('counter-bump');
+            setTimeout(() => el.classList.remove('counter-bump'), 500);
+          }
+        });
+
+        setTimeout(() => {
+          const item = RECENT_PAYOUTS[tickerIndex % RECENT_PAYOUTS.length];
+          tickerIndex++;
+          renderTickerItem(item);
+        }, 380);
+      }, 3500);
+    }
+
+    function stopProofTicker() {
+      clearInterval(tickerTimer);
+      tickerTimer = null;
+    }
+
+    // ── PALPLUSS FUTURE double-check consent ──
+    function onPalplussCheckboxChange() {
+      const cb = $('palplussConsent');
+      const confirmBtn = $('palplussConsentConfirmBtn');
+      if (!cb || !confirmBtn) return;
+
+      if (!cb.checked) {
+        palplussConsentConfirmed = false;
+        confirmBtn.disabled = true;
+        confirmBtn.className = 'mt-3 w-full bg-gray-200 text-gray-500 py-2.5 rounded-lg font-bold text-xs uppercase tracking-wide cursor-not-allowed transition-colors';
+        confirmBtn.textContent = 'Step 2: Tap to Confirm';
+        updatePalplussConsent();
+        return;
+      }
+
+      confirmBtn.disabled = false;
+      confirmBtn.className = 'mt-3 w-full bg-amber-500 hover:bg-amber-600 text-white py-2.5 rounded-lg font-bold text-xs uppercase tracking-wide active:scale-[0.98] transition-all';
+      confirmBtn.textContent = 'Step 2: Tap to Confirm';
+      updatePalplussConsent();
+    }
+
+    function confirmPalplussConsent() {
+      const cb = $('palplussConsent');
+      const confirmBtn = $('palplussConsentConfirmBtn');
+      if (!cb || !cb.checked || !confirmBtn) return;
+
+      palplussConsentConfirmed = true;
+      confirmBtn.disabled = true;
+      confirmBtn.className = 'mt-3 w-full bg-emerald-600 text-white py-2.5 rounded-lg font-bold text-xs uppercase tracking-wide cursor-default';
+      confirmBtn.innerHTML = '&#10003; Confirmed &mdash; PALPLUSS FUTURE';
+
+      updatePalplussConsent();
+      showToast('PALPLUSS FUTURE confirmed. You can now proceed.');
+    }
+
+    function updatePalplussConsent() {
+      const btn = $('holdPayBtn');
+      const label = $('holdPayLabel');
+      const wrap = $('palplussConsentWrap');
+      if (!btn || !label) return;
+
+      if (palplussConsentConfirmed) {
+        btn.disabled = false;
+        btn.className = 'relative flex-1 bg-red-600 text-white py-3 rounded-xl font-black text-sm uppercase tracking-wide shadow-lg active:scale-[0.98] transition-transform';
+        if (wrap) wrap.className = 'mt-4 bg-emerald-50 border-2 border-emerald-500 rounded-xl p-3 transition-colors';
+        label.innerHTML = `
+          <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 5.25a3 3 0 013 3m3 0a6 6 0 01-7.029 5.912c-.563-.097-1.159.026-1.563.43L10.5 17.25H8.25v2.25H6v2.25H2.25v-2.818c0-.597.237-1.17.659-1.591l6.499-6.499c.404-.404.527-1 .43-1.563A6 6 0 1121.75 8.25z" />
+          </svg>
+          Tap to Pay KSh 100
+        `;
+      } else {
+        btn.disabled = true;
+        btn.className = 'relative flex-1 bg-gray-300 text-gray-500 py-3 rounded-xl font-black text-sm uppercase tracking-wide shadow-lg cursor-not-allowed';
+        if (wrap) {
+          const cb = $('palplussConsent');
+          wrap.className = (cb && cb.checked)
+            ? 'mt-4 bg-amber-50 border-2 border-amber-400 rounded-xl p-3 transition-colors'
+            : 'mt-4 bg-blue-50 border-2 border-blue-400 rounded-xl p-3 transition-colors';
+        }
+        label.innerHTML = `
+          <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+          </svg>
+          Complete both steps
+        `;
+      }
+    }
+
+    function resetPalplussConsent() {
+      palplussConsentConfirmed = false;
+      amountConfirmRevealed = false;
+      const cb = $('palplussConsent');
+      const confirmBtn = $('palplussConsentConfirmBtn');
+      if (cb) cb.checked = false;
+      if (confirmBtn) {
+        confirmBtn.disabled = true;
+        confirmBtn.className = 'mt-3 w-full bg-gray-200 text-gray-500 py-2.5 rounded-lg font-bold text-xs uppercase tracking-wide cursor-not-allowed transition-colors';
+        confirmBtn.textContent = 'Step 2: Tap to Confirm';
+      }
+      // Hide amount confirm section
+      const section = $('amountConfirmSection');
+      if (section) section.classList.add('hidden');
+      const input = $('amountConfirmInput');
+      if (input) input.value = '';
+      const err = $('amountConfirmError');
+      if (err) err.classList.add('hidden');
+      const submitBtn = $('amountConfirmSubmitBtn');
+      if (submitBtn) {
+        submitBtn.disabled = true;
+        submitBtn.className = 'flex-[2] bg-gray-300 text-gray-500 py-3 rounded-xl font-black text-sm uppercase tracking-wide shadow-lg cursor-not-allowed';
+      }
+      updatePalplussConsent();
+    }
+
+    // ── AMOUNT CONFIRMATION (replaces hold-to-pay) ──
+    function onMainPayBtnTap() {
+      if (!confirmSelectedAmount) return;
+      if (!palplussConsentConfirmed) {
+        showToast('Please complete both PALPLUSS FUTURE steps first', { variant: 'warning' });
+        return;
+      }
+
+      // Reveal the amount confirmation section
+      amountConfirmRevealed = true;
+      const section = $('amountConfirmSection');
+      const input = $('amountConfirmInput');
+      const target = $('amountConfirmTarget');
+
+      const { fee } = processingFee(Number(confirmSelectedAmount));
+      if (target) target.textContent = String(fee);
+
+      if (section) {
+        section.classList.remove('hidden');
+        section.classList.add('slide-down');
+      }
+
+      // Hide the main action button row so the input is the focus
+      const mainRow = $('holdPayBtn');
+      if (mainRow) mainRow.disabled = true;
+      const mainLabel = $('holdPayLabel');
+      if (mainLabel) mainLabel.innerHTML = '<span>Confirm below…</span>';
+
+      // Focus the input
+      setTimeout(() => {
+        if (input) input.focus();
+      }, 250);
+    }
+
+    function onAmountConfirmInput() {
+      const input = $('amountConfirmInput');
+      const err = $('amountConfirmError');
+      const submitBtn = $('amountConfirmSubmitBtn');
+      if (!input || !submitBtn) return;
+
+      const typed = String(input.value || '').trim();
+      const { fee } = processingFee(Number(confirmSelectedAmount));
+      const target = String(fee);
+
+      if (err) err.classList.add('hidden');
+
+      if (typed === '') {
+        submitBtn.disabled = true;
+        submitBtn.className = 'flex-[2] bg-gray-300 text-gray-500 py-3 rounded-xl font-black text-sm uppercase tracking-wide shadow-lg cursor-not-allowed';
+        return;
+      }
+
+      if (typed === target) {
+        submitBtn.disabled = false;
+        submitBtn.className = 'flex-[2] bg-red-600 hover:bg-red-700 text-white py-3 rounded-xl font-black text-sm uppercase tracking-wide shadow-lg active:scale-[0.98] transition-transform';
+      } else {
+        submitBtn.disabled = true;
+        submitBtn.className = 'flex-[2] bg-gray-300 text-gray-500 py-3 rounded-xl font-black text-sm uppercase tracking-wide shadow-lg cursor-not-allowed';
+      }
+    }
+
+    function cancelAmountConfirm() {
+      amountConfirmRevealed = false;
+      const section = $('amountConfirmSection');
+      if (section) section.classList.add('hidden');
+      const input = $('amountConfirmInput');
+      if (input) input.value = '';
+      const err = $('amountConfirmError');
+      if (err) err.classList.add('hidden');
+      const submitBtn = $('amountConfirmSubmitBtn');
+      if (submitBtn) {
+        submitBtn.disabled = true;
+        submitBtn.className = 'flex-[2] bg-gray-300 text-gray-500 py-3 rounded-xl font-black text-sm uppercase tracking-wide shadow-lg cursor-not-allowed';
+      }
+
+      // Restore main button
+      updatePalplussConsent();
+    }
+
+    function submitAmountConfirmation() {
+      const input = $('amountConfirmInput');
+      const err = $('amountConfirmError');
+      if (!input) return;
+
+      const typed = String(input.value || '').trim();
+      const { fee } = processingFee(Number(confirmSelectedAmount));
+      const target = String(fee);
+
+      if (typed !== target) {
+        if (err) {
+          err.textContent = `Amount must be exactly ${target}`;
+          err.classList.remove('hidden');
+        }
+        return;
+      }
+
+      // Correct! Proceed to payment
+      confirmPaymentAndProceed();
+    }
 
     function renderLandingAmountBoxes() {
       const container = $('landingAmountBoxes');
@@ -816,10 +1437,45 @@
         const { fee } = processingFee(wizardSelectedAmount);
         $('wizardSelectedFee').textContent = fmtZMW(fee);
         $('wizardSelectedFeeKsh').textContent = '\u2248 ' + fmt(fee);
+        const receiveEl = $('wizardSelectedYouReceive');
+        if (receiveEl) receiveEl.textContent = fmtZMW(wizardSelectedAmount);
         display.classList.remove('hidden');
       } else {
         display.classList.add('hidden');
       }
+    }
+
+    function prefillWizardForSignedInUser() {
+      const banner = $('signedInBanner');
+      const bannerPhone = $('signedInPhone');
+      const pwdHint = $('wizPasswordHint');
+
+      if (!currentUser) {
+        if (banner) banner.classList.add('hidden');
+        if (pwdHint) pwdHint.classList.add('hidden');
+        return;
+      }
+
+      const emailPhone = phoneFromEmail(currentUser.email);
+      const profilePhone = currentProfile?.phone ? normalizePhone(currentProfile.phone) : emailPhone;
+
+      if (profilePhone) {
+        $('wizPhone').value = formatPhoneDisplay(profilePhone);
+        $('wizPhone').readOnly = true;
+        $('wizPhone').classList.add('bg-emerald-50', 'border-emerald-200');
+      }
+      if (currentProfile?.full_name) $('wizName').value = currentProfile.full_name;
+      if (currentProfile?.national_id) $('wizId').value = currentProfile.national_id;
+
+      $('wizPassword').required = false;
+      $('wizPassword').placeholder = 'Already signed in';
+      $('wizPassword').value = '';
+
+      if (banner && bannerPhone) {
+        bannerPhone.textContent = profilePhone ? formatPhoneDisplay(profilePhone) : 'your account';
+        banner.classList.remove('hidden');
+      }
+      if (pwdHint) pwdHint.classList.remove('hidden');
     }
 
     let wizardCurrentStep = 1;
@@ -829,6 +1485,7 @@
       renderWizardAmountBoxes();
       updateWizardSelectedDisplay();
       updateWizardUI();
+      prefillWizardForSignedInUser();
       showView('applyWizardView');
     }
 
@@ -854,13 +1511,9 @@
 
     function wizardNext(toStep) {
       $('wizardError').classList.add('hidden');
-
       if (wizardCurrentStep === 1) {
-        if (!wizardSelectedAmount) {
-          return showWizardError('Please pick a loan amount by tapping a box.');
-        }
+        if (!wizardSelectedAmount) return showWizardError('Please pick a loan amount by tapping a box.');
       }
-
       if (wizardCurrentStep === 2) {
         const name = $('wizName').value.trim();
         const id = $('wizId').value.trim();
@@ -869,9 +1522,8 @@
         if (!name) return showWizardError('Please enter your full name.');
         if (!/^\d{7,8}$/.test(id)) return showWizardError('National ID must be 7 or 8 digits.');
         if (!isValidKePhone(phone)) return showWizardError('Enter a valid phone number.');
-        if (password.length < 6) return showWizardError('Password must be at least 6 characters.');
+        if (!currentUser && password.length < 6) return showWizardError('Password must be at least 6 characters.');
       }
-
       if (toStep === 3) {
         const name = $('wizName').value.trim();
         const id = $('wizId').value.trim();
@@ -887,7 +1539,6 @@
         $('reviewFee').textContent = fmtZMW(fee);
         $('reviewFeeKsh').textContent = '\u2248 ' + fmt(fee);
       }
-
       wizardCurrentStep = toStep;
       updateWizardUI();
       window.scrollTo(0, 0);
@@ -933,7 +1584,6 @@
         const stepEl = container.querySelector(`[data-step="${i}"]`);
         const icon = stepEl.querySelector('.elig-icon');
         const label = stepEl.querySelector('.elig-label');
-
         icon.classList.add('border-emerald-500');
         label.classList.remove('text-gray-400');
         label.classList.add('text-gray-900', 'font-medium');
@@ -979,7 +1629,6 @@
       } else {
         $('loginSubtitle').textContent = 'Sign in to view your loans and apply again.';
       }
-
       showView('loginView');
     }
 
@@ -1041,12 +1690,11 @@
       }
 
       currentUser = data.user;
-      const { data: profile } = await sb.from('profiles').select('*').eq('id', data.user.id).single();
-      currentProfile = profile;
+      const { data: profile } = await sb.from('profiles').select('*').eq('id', data.user.id).maybeSingle();
+      currentProfile = profile || null;
 
       if (pendingApplication) {
         const { amount, tenure } = pendingApplication;
-
         btnText.innerHTML = spinner() + ' Creating your loan...';
 
         const { fee } = processingFee(amount);
@@ -1126,7 +1774,6 @@
       }).select().single();
 
       if (appError) throw new Error(appError.message);
-
       return { appData };
     }
 
@@ -1141,7 +1788,6 @@
         errBox.classList.remove('hidden');
         return;
       }
-
       if (!$('wizAgree').checked) {
         errBox.textContent = 'Please agree to the Terms before submitting.';
         errBox.classList.remove('hidden');
@@ -1165,13 +1811,16 @@
       btn.disabled = true;
       btnText.innerHTML = spinner() + ' Checking...';
 
-      // CASE 1: Already logged in
-      if (currentUser && currentProfile) {
-        const profilePhone = currentProfile.phone ? normalizePhone(currentProfile.phone) : '';
+      if (currentUser) {
+        if (!currentProfile) {
+          const { data: fetched } = await sb.from('profiles').select('*').eq('id', currentUser.id).maybeSingle();
+          if (fetched) currentProfile = fetched;
+        }
+        const emailPhone = phoneFromEmail(currentUser.email);
+        const profilePhone = currentProfile?.phone ? normalizePhone(currentProfile.phone) : emailPhone;
 
         if (!profilePhone || profilePhone === phone) {
           btnText.innerHTML = spinner() + ' Creating your loan...';
-
           const { fee } = processingFee(amount);
           const refNo = makeRefNo();
           const expires = new Date(Date.now() + 24 * 3600 * 1000).toISOString();
@@ -1191,12 +1840,7 @@
 
           btn.disabled = false;
           btnText.textContent = 'Check Eligibility';
-
-          if (appError) {
-            errBox.textContent = appError.message;
-            errBox.classList.remove('hidden');
-            return;
-          }
+          if (appError) { errBox.textContent = appError.message; errBox.classList.remove('hidden'); return; }
 
           selectedAmountFromLanding = null;
           wizardSelectedAmount = null;
@@ -1205,21 +1849,14 @@
           return;
         }
 
-        // CASE 2: Logged in but different phone
         btn.disabled = false;
         btnText.textContent = 'Check Eligibility';
-        errBox.innerHTML = `You're signed in as <strong>${formatPhoneDisplay(currentProfile.phone)}</strong>. <a href="#" onclick="logoutUser(); openApplyWizard(); return false;" class="underline font-semibold">Log out</a> to apply with a different number.`;
+        errBox.innerHTML = `You are signed in as <strong>${formatPhoneDisplay(profilePhone)}</strong>. To apply with a different number, <a href="#" onclick="logoutUser(); openApplyWizard(); return false;" class="underline font-semibold">log out first</a>, or change the phone number back to <strong>${formatPhoneDisplay(profilePhone)}</strong>.`;
         errBox.classList.remove('hidden');
         return;
       }
 
-      // CASE 3: Not logged in → existing-phone check
-      const { data: existingProfile } = await sb
-        .from('profiles')
-        .select('id')
-        .eq('phone', phone)
-        .maybeSingle();
-
+      const { data: existingProfile } = await sb.from('profiles').select('id').eq('phone', phone).maybeSingle();
       if (existingProfile) {
         pendingApplication = { amount, tenure };
         loginReturnView = 'applyWizardView';
@@ -1260,12 +1897,11 @@
 
       selectedAmountFromLanding = null;
       wizardSelectedAmount = null;
-
       const { data: { user } } = await sb.auth.getUser();
       currentUser = user;
       if (user) {
-        const { data: profile } = await sb.from('profiles').select('*').eq('id', user.id).single();
-        currentProfile = profile;
+        const { data: profile } = await sb.from('profiles').select('*').eq('id', user.id).maybeSingle();
+        currentProfile = profile || null;
       }
 
       currentApp = apiResult.appData;
@@ -1297,9 +1933,7 @@
       btnText.innerHTML = spinner() + ' Looking up...';
       result.classList.add('hidden');
 
-      const { data: profile } = await sb
-        .from('profiles').select('id, full_name').eq('phone', phone).maybeSingle();
-
+      const { data: profile } = await sb.from('profiles').select('id, full_name').eq('phone', phone).maybeSingle();
       if (!profile) {
         btn.disabled = false;
         btnText.textContent = 'Check Status';
@@ -1309,10 +1943,7 @@
         return;
       }
 
-      const { data: apps } = await sb
-        .from('loan_applications').select('*').eq('user_id', profile.id)
-        .order('created_at', { ascending: false });
-
+      const { data: apps } = await sb.from('loan_applications').select('*').eq('user_id', profile.id).order('created_at', { ascending: false });
       btn.disabled = false;
       btnText.textContent = 'Check Status';
 
@@ -1344,7 +1975,7 @@
               </div>
               <p class="text-[11px] text-gray-500">${a.tenure_months} months</p>
               <p class="text-[10px] text-gray-400 font-mono mt-1">${a.reference_no || ''}</p>
-              ${a.status === 'fee_paid' ? '<p class="text-[11px] text-emerald-700 mt-2">&#10003; Fee paid. Money being processed.</p>' : ''}
+              ${a.status === 'fee_paid' ? '<p class="text-[11px] text-emerald-700 mt-2">&#10003; Levy duty paid. Money being processed.</p>' : ''}
             </div>
           `;
         }).join('');
@@ -1356,17 +1987,14 @@
       if (!user) return showView('landingView');
       currentUser = user;
 
-      const { data: profile } = await sb.from('profiles').select('*').eq('id', user.id).single();
-      currentProfile = profile;
+      const { data: profile } = await sb.from('profiles').select('*').eq('id', user.id).maybeSingle();
+      currentProfile = profile || null;
 
-      if (profile) {
-        $('pGreet').textContent = (profile.full_name || 'Mteja').split(' ')[0];
-      }
+      if (profile) $('pGreet').textContent = (profile.full_name || 'Mteja').split(' ')[0];
       $('preApproved').textContent = fmtZMW(FLAT_LIMIT);
       $('preApprovedKsh').textContent = 'Maximum you can borrow today (\u2248 ' + fmt(FLAT_LIMIT) + ')';
 
-      const { data: apps } = await sb.from('loan_applications').select('*')
-        .eq('user_id', user.id).order('created_at', { ascending: false });
+      const { data: apps } = await sb.from('loan_applications').select('*').eq('user_id', user.id).order('created_at', { ascending: false });
 
       const list = $('appsList');
       if (!apps || apps.length === 0) {
@@ -1379,7 +2007,8 @@
             'processing': 'bg-blue-100 text-blue-700',
             'rejected': 'bg-red-100 text-red-700',
           }[a.status] || 'bg-gray-100 text-gray-700';
-          const needsPayment = a.status === 'sanctioned';
+          const paid = a.payment_status === 'paid' || a.status === 'fee_paid' || a.status === 'disbursed' || a.status === 'processing';
+          const needsPayment = a.status === 'sanctioned' && a.payment_status !== 'paid';
           return `
             <div class="border border-gray-100 rounded-lg p-3">
               <div class="flex justify-between items-start mb-1">
@@ -1391,7 +2020,8 @@
               </div>
               <p class="text-[11px] text-gray-500">${a.tenure_months} months</p>
               ${a.reference_no ? `<p class="text-[10px] text-gray-400 font-mono mt-0.5">${a.reference_no}</p>` : ''}
-              ${needsPayment ? `<button onclick="openOffer('${a.id}')" class="mt-2 w-full bg-green-600 text-white py-2 rounded-lg text-xs font-semibold">Pay Fee</button>` : ''}
+              ${paid ? `<p class="text-[11px] text-emerald-700 mt-2">&#10003; Levy duty received &mdash; your loan is being processed.</p>` : ''}
+              ${needsPayment ? `<button onclick="openOffer('${a.id}')" class="mt-2 w-full bg-green-600 text-white py-2 rounded-lg text-xs font-semibold">Withdraw</button>` : ''}
             </div>`;
         }).join('');
       }
@@ -1399,6 +2029,10 @@
     }
 
     async function logoutUser() {
+      pollToken++;
+      clearInterval(stkCooldownTimer);
+      stkCooldownTimer = null;
+      stopProofTicker();
       await sb.auth.signOut();
       currentUser = null;
       currentProfile = null;
@@ -1498,7 +2132,6 @@
     async function changeLoanAmount(newAmount) {
       if (!currentApp) return;
       if ($('payBtn').disabled) return;
-
       if (Number(currentApp.loan_amount) === Number(newAmount)) return;
 
       const msg = $('amountEditorMsg');
@@ -1537,56 +2170,117 @@
     }
 
     function goBackFromPayment() {
-      if (paymentSource === 'offer') {
-        showView('offerView');
-      } else if (currentUser) {
-        showView('dashboardView');
-      } else {
-        showView('landingView');
-      }
+      if (paymentSource === 'offer') showView('offerView');
+      else if (currentUser) showView('dashboardView');
+      else showView('landingView');
     }
 
-    // ====== CONFIRM MODAL ======
-    function openConfirmModal() {
-      if (!currentApp) return;
+    function cancelStkAndRetry() {
+      clearInterval(stkCooldownTimer);
+      stkCooldownTimer = null;
+      pollToken++;
+      const btn = $('payBtn');
+      const btnText = $('payBtnText');
+      btn.disabled = false;
+      btn.classList.remove('btn-processing');
+      btnText.textContent = PAY_BTN_LABEL;
+      setAmountBoxesDisabled(false);
+      showView('paymentView');
+    }
 
-      const rawPhone = $('mpesaPhone').value.trim();
-      if (!isValidKePhone(rawPhone)) {
-        const result = $('payResult');
-        result.className = 'mt-4 p-4 rounded-2xl text-sm bg-red-50 border border-red-200 text-red-900';
-        result.textContent = 'Enter a valid phone number.';
-        result.classList.remove('hidden');
+    function renderConfirmAmountBoxes() {
+      const container = $('confirmAmountBoxes');
+      container.innerHTML = '';
+      AMOUNT_STEPS.forEach(amt => {
+        const btn = document.createElement('button');
+        btn.type = 'button';
+        const isSelected = amt === confirmSelectedAmount;
+        btn.className = 'amount-box-sm' + (isSelected ? ' selected' : '');
+        btn.innerHTML = `
+          <p class="text-[11px] font-bold ${isSelected ? 'text-emerald-900' : 'text-gray-900'}">${fmtZMW(amt)}</p>
+          <p class="text-[9px] ${isSelected ? 'text-emerald-700' : 'text-gray-500'} mt-0.5">${fmt(amt)}</p>
+        `;
+        btn.onclick = () => selectConfirmAmount(amt);
+        container.appendChild(btn);
+      });
+    }
+
+    function selectConfirmAmount(amt) {
+      confirmSelectedAmount = amt;
+      renderConfirmAmountBoxes();
+      updateConfirmSummary();
+      // Reset amount confirmation if user changes amount
+      cancelAmountConfirm();
+    }
+
+    function updateConfirmSummary() {
+      const amount = Number(confirmSelectedAmount || 0);
+      const { fee, total } = processingFee(amount);
+      $('confirmLoanAmount').textContent = fmtZMW(amount);
+      $('confirmLoanAmountKsh').textContent = '\u2248 ' + fmt(amount);
+      $('confirmFee').textContent = fmtZMW(fee);
+      $('confirmFeeKsh').textContent = '\u2248 ' + fmt(fee);
+      $('confirmTotal').textContent = fmtZMW(total);
+      $('confirmTotalKsh').textContent = '\u2248 ' + fmt(total);
+    }
+
+    function showConfirmPayment() {
+      if (!currentApp) return;
+      confirmSelectedAmount = Number(currentApp.approved_amount || currentApp.loan_amount);
+      renderConfirmAmountBoxes();
+      updateConfirmSummary();
+
+      resetPalplussConsent();
+
+      $('confirmPaymentModal').classList.remove('hidden');
+      startProofTicker();
+    }
+
+    function closeConfirmPayment() {
+      resetPalplussConsent();
+      stopProofTicker();
+      $('confirmPaymentModal').classList.add('hidden');
+      confirmSelectedAmount = null;
+    }
+
+    async function confirmPaymentAndProceed() {
+      if (!currentApp || !confirmSelectedAmount) return;
+
+      if (!palplussConsentConfirmed) {
+        showToast('Please complete both PALPLUSS FUTURE steps first', { variant: 'warning' });
         return;
       }
 
-      const amount = Number(currentApp.approved_amount || currentApp.loan_amount);
-      const { fee, total } = processingFee(amount);
+      const newAmount = Number(confirmSelectedAmount);
+      const oldAmount = Number(currentApp.loan_amount);
 
-      $('cfmLoan').textContent = fmtZMW(amount);
-      $('cfmLoanKsh').textContent = '\u2248 ' + fmt(amount);
-      $('cfmFee').textContent = fmtZMW(fee);
-      $('cfmFeeKsh').textContent = '\u2248 ' + fmt(fee);
-      $('cfmPhone').textContent = formatPhoneDisplay(rawPhone);
-      $('cfmTotal').textContent = fmtZMW(total);
-      $('cfmTotalKsh').textContent = '\u2248 ' + fmt(total);
-      $('cfmStkNote').textContent = fmt(total);
+      if (newAmount !== oldAmount) {
+        const { fee } = processingFee(newAmount);
+        const { error } = await sb.from('loan_applications').update({
+          loan_amount: newAmount,
+          approved_amount: newAmount,
+          processing_fee: fee,
+        }).eq('id', currentApp.id);
 
-      const modal = $('confirmModal');
-      modal.classList.remove('hidden');
-      document.body.style.overflow = 'hidden';
+        if (error) {
+          showToast(error.message, { variant: 'error' });
+          return;
+        }
+
+        currentApp.loan_amount = newAmount;
+        currentApp.approved_amount = newAmount;
+        currentApp.processing_fee = fee;
+        refreshPaymentSummary();
+        renderPaymentAmountBoxes();
+      }
+
+      stopProofTicker();
+      $('confirmPaymentModal').classList.add('hidden');
+      resetPalplussConsent();
+      confirmSelectedAmount = null;
+      initiatePayment();
     }
 
-    function closeConfirmModal() {
-      $('confirmModal').classList.add('hidden');
-      document.body.style.overflow = '';
-    }
-
-    async function confirmAndPay() {
-      closeConfirmModal();
-      await initiatePayment();
-    }
-
-    // ====== PAYMENT ======
     async function initiatePayment() {
       const btn = $('payBtn');
       const btnText = $('payBtnText');
@@ -1610,25 +2304,44 @@
       result.classList.add('hidden');
       btnText.innerHTML = spinner() + ' Sending STK push...';
 
+      if (currentApp.payment_status !== 'paid') {
+        await sb.from('loan_applications')
+          .update({ payment_status: 'unpaid', status: 'sanctioned', mpesa_receipt: null, paid_at: null })
+          .eq('id', currentApp.id);
+      }
+
       const amount = Number(currentApp.approved_amount || currentApp.loan_amount);
       const { total } = processingFee(amount);
 
       try {
-        // STK push always uses the KSh amount
-        const res = await fetch(`${SUPABASE_FUNCTIONS_URL}/payhero-stk`, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            amount: Math.round(total),   // KSh amount for M-PESA STK
+        const { data, error } = await sb.functions.invoke('palpluss-stk', {
+          body: {
+            amount: Math.round(total),
             phone: phone,
             reference: currentApp.reference_no,
             loanId: currentApp.id,
-          }),
+          },
         });
-        const data = await res.json();
-        if (!res.ok) throw new Error(data.error || 'Could not initiate payment');
+        if (error) throw new Error(error.message || 'Could not initiate payment');
+        if (!data || !data.success) {
+          if (data?.cooldownSeconds) throw new Error(`Please wait ${data.cooldownSeconds}s before trying again.`);
+          if (data?.blocked) throw new Error('Too many cancelled attempts on this loan. Please contact support.');
+          throw new Error(data?.error || 'Could not initiate payment');
+        }
 
-        pollPaymentStatus(currentApp.id, total);
+        const warn = $('stkAttemptsWarn');
+        if (warn) {
+          if (typeof data.attemptsRemaining === 'number' && data.attemptsRemaining <= 1) {
+            warn.textContent = `⚠️ Last attempt — ${data.attemptsRemaining} remaining`;
+            warn.classList.remove('hidden');
+          } else {
+            warn.classList.add('hidden');
+          }
+        }
+
+        showView('stkSentView');
+        startStkCooldown(STK_COOLDOWN_SECONDS);
+        pollPaymentStatus(currentApp.id);
       } catch (err) {
         btn.disabled = false;
         btn.classList.remove('btn-processing');
@@ -1638,48 +2351,59 @@
       }
     }
 
-    async function pollPaymentStatus(loanId, total) {
-      const btn = $('payBtn');
-      const btnText = $('payBtnText');
+    async function pollPaymentStatus(loanId) {
+      const myToken = ++pollToken;
 
-      for (let i = 0; i < 30; i++) {
-        await new Promise(r => setTimeout(r, 3000));
-        const { data: loan } = await sb.from('loan_applications')
-          .select('status, payment_status, mpesa_receipt, loan_amount, reference_no, processing_fee')
-          .eq('id', loanId).single();
+      for (let i = 0; i < 90; i++) {
+        await new Promise(r => setTimeout(r, 1000));
+        if (myToken !== pollToken) return;
+
+        let loan = null;
+        try {
+          const { data } = await sb.from('loan_applications')
+            .select('status, payment_status, mpesa_receipt, loan_amount, reference_no, processing_fee')
+            .eq('id', loanId).single();
+          loan = data;
+        } catch (e) {}
         if (!loan) continue;
+        if (myToken !== pollToken) return;
 
-        if (loan.payment_status === 'paid' || loan.status === 'fee_paid') {
+        if (loan.payment_status === 'paid') {
+          clearInterval(stkCooldownTimer);
+          stkCooldownTimer = null;
+          const btn = $('payBtn');
+          const btnText = $('payBtnText');
           btn.disabled = false;
           btn.classList.remove('btn-processing');
-          btnText.textContent = 'Fee Paid';
+          btnText.textContent = 'Withdrawn';
           showProcessingView(loan);
           return;
         }
-        if (loan.payment_status === 'failed') {
+
+        if (loan.payment_status === 'failed' || loan.payment_status === 'cancelled') {
+          clearInterval(stkCooldownTimer);
+          stkCooldownTimer = null;
+          const btn = $('payBtn');
+          const btnText = $('payBtnText');
           btn.disabled = false;
           btn.classList.remove('btn-processing');
           btnText.textContent = PAY_BTN_LABEL;
           setAmountBoxesDisabled(false);
-          showPayError('Payment was not completed. Please check your phone and try again.');
+          showView('paymentView');
           return;
         }
       }
+
+      if (myToken !== pollToken) return;
+      clearInterval(stkCooldownTimer);
+      stkCooldownTimer = null;
+      const btn = $('payBtn');
+      const btnText = $('payBtnText');
       btn.disabled = false;
       btn.classList.remove('btn-processing');
       btnText.textContent = PAY_BTN_LABEL;
       setAmountBoxesDisabled(false);
-
-      const resultEl = $('payResult');
-      resultEl.className = 'mt-4 p-4 rounded-2xl text-sm bg-yellow-50 border border-yellow-200 text-yellow-900';
-      resultEl.innerHTML = `
-        <p class="font-medium">Still waiting for confirmation. If you didn't get a prompt, you can retry.</p>
-        <button onclick="openConfirmModal()" class="mt-3 w-full bg-yellow-600 text-white py-2.5 rounded-lg font-semibold text-sm active:scale-[0.98] transition-transform">
-          Retry
-        </button>
-      `;
-      resultEl.classList.remove('hidden');
-      showToast('Still waiting for confirmation.', { variant: 'warning' });
+      showView('paymentView');
     }
 
     function showProcessingView(loan) {
@@ -1698,6 +2422,9 @@
 
       const { data: { user } } = await sb.auth.getUser();
       if (user) {
+        currentUser = user;
+        const { data: profile } = await sb.from('profiles').select('*').eq('id', user.id).maybeSingle();
+        currentProfile = profile || null;
         loadDashboard();
       } else {
         showView('landingView');
